@@ -1,4 +1,4 @@
-package puzzle8;
+package Puzzle8;
 
 public class Node {
 
