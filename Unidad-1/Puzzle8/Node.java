@@ -9,6 +9,15 @@ public class Node {
     public Node(String state, Node parent) {
         this.state = state;
         this.parent = parent;
+
+        // Calcula la profundidad del nodo
+        if (parent == null) {
+            this.depth = 0;
+        } else {
+            this.depth = parent.getDepth() + 1;
+        }
+
+        this.cost = 0;
     }
 
     public String getState() {

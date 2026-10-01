@@ -1,41 +1,54 @@
 package Puzzle8;
 
-import java.util.List;
-import java.util.PriorityQueue;
-
 public class App {
+
     public static void main(String[] args) throws Exception {
 
-        
-                                // 3x3 = 9
-        String initialState = "7621 3458"; // random initial state
-        String goalState = "12345678 "; // goal state
+        String initialState = "7621 3458";
+        String goalState = "12345678 ";
+
         SearchTree searchTree = new SearchTree(initialState, goalState);
-        searchTree.UniformCostSearch();
-        // searchTree.breadthFirstSearch();
-        // searchTree.deepFirstSearch();
-        System.out.println("End");
-
-        System.out.println("INITIAL STATE> " + initialState);
-        List<Node> children = NodeUtils.generateChildren(new Node(initialState, null));
-        for (Node node : children) {
-            System.out.println(node.getState());
-        }
 
 
-        PriorityQueue<Node> priorityQueue = new PriorityQueue<>(new NodePriorityComparator());
-        Node n1 = new Node ("n1", null);
-        n1.setCost(5);
+        // BUSQUEDA EN ANCHURA
+        System.out.println("*******BUSQUEDA EN ANCHURA*******");
+        searchTree.busquedaPrimeroAnchura();
 
-        Node n2 = new Node ("n2", null);
-        n2.setCost(3);
 
-        Node n3 = new Node ("n3", null);
-        n3.setCost(7);
+        
+        // BUSQUEDA EN PROFUNDIDAD
+        System.out.println("*******BUSQUEDA EN PROFUNDIDAD*******");
 
-        queue.add(n1);
-        queue.add(n2);
-        queue.add(n3);
+        searchTree.busquedaProfundidad();
+        
 
+
+        
+        // BUSQUEDA DE COSTO UNIFORME
+        System.out.println("*******BUSQUEDA DE COSTO UNIFORME*******");
+
+        searchTree.busquedaCostoUniforme();
+        
+        
+        // BUSQUEDA EN PROFUNDIDAD LIMITADA
+        System.out.println("*******BUSQUEDA EN PROFUNDIDAD LIMITADA*******");
+
+        searchTree.busquedaProfundidadLimitada(10);
+
+
+        // BUSQUEDA EN PROFUNDIDAD ITERATIVA
+        System.out.println("*******BUSQUEDA EN PROFUNDIDAD ITERATIVA*******");
+
+        searchTree.busquedaProfundidadIterativa();
+
+
+        // BUSQUEDA BIDIRECCIONAL
+        System.out.println("*******BUSQUEDA BIDIRECCIONAL*******");
+
+        searchTree.busquedaBidireccional();
+
+
+        System.out.println("Fin");
     }
 }
+
