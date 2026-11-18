@@ -1,0 +1,7 @@
+Unidad-2/RostrosFamCNN/dataset/ 
+Unidad-2/RostrosEquipoCNN/dataset/ 
+*.h5 
+*.keras 
+.venv/ 
+__pycache__/ 
+*.pyc
