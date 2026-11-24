@@ -5,3 +5,4 @@ Unidad-2/RostrosEquipoCNN/dataset/
 .venv/ 
 __pycache__/ 
 *.pyc
+modelo.yml
