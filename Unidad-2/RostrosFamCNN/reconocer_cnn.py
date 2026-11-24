@@ -4,7 +4,7 @@ import keras
 
 # Cargar el modelo.
 model = keras.models.load_model('modelo_cnn_rostros.h5')
-class_names = ["Ana", "mama", "papa"]
+class_names = [""]
 
 # Cargar el detector de rostros de OpenCV
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')

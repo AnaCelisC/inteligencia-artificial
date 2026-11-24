@@ -1,3 +1,4 @@
+
 package Puzzle8;
 
 public class App {
@@ -9,31 +10,36 @@ public class App {
 
         SearchTree searchTree = new SearchTree(initialState, goalState);
 
+        //NOMBRE
+                System.out.println("*******ANA PAOLA CELIS CORRALES*******");
 
         // BUSQUEDA EN ANCHURA
         System.out.println("*******BUSQUEDA EN ANCHURA*******");
+
         searchTree.busquedaPrimeroAnchura();
 
 
-        
         // BUSQUEDA EN PROFUNDIDAD
         System.out.println("*******BUSQUEDA EN PROFUNDIDAD*******");
 
         searchTree.busquedaProfundidad();
-        
 
 
-        
         // BUSQUEDA DE COSTO UNIFORME
         System.out.println("*******BUSQUEDA DE COSTO UNIFORME*******");
 
         searchTree.busquedaCostoUniforme();
-        
-        
+
+
         // BUSQUEDA EN PROFUNDIDAD LIMITADA
         System.out.println("*******BUSQUEDA EN PROFUNDIDAD LIMITADA*******");
 
-        searchTree.busquedaProfundidadLimitada(10);
+        if (!searchTree.busquedaProfundidadLimitada(10)) {
+            System.out.println("Limite: 10");
+            System.out.println("No se encontro solucion con el limite establecido");
+        }
+
+        System.out.println();
 
 
         // BUSQUEDA EN PROFUNDIDAD ITERATIVA
@@ -51,4 +57,3 @@ public class App {
         System.out.println("Fin");
     }
 }
-

@@ -1,3 +1,4 @@
+
 package Puzzle8;
 
 import java.util.HashSet;
@@ -13,6 +14,7 @@ public class SearchTree {
     Node root;
     String initialState;
     String goalState;
+    long iteracionesTotales;
 
     public SearchTree(String initialState, String goalState) {
         this.initialState = initialState;
@@ -23,6 +25,8 @@ public class SearchTree {
 
     // BUSQUEDA PRIMERO EN ANCHURA
     public void busquedaPrimeroAnchura() {
+
+        long inicio = System.nanoTime();
 
         int time = 0;
 
@@ -49,12 +53,14 @@ public class SearchTree {
 
             if (currentNode.getState().equals(goalState)) {
 
-                System.out.println("Estado objetivo encontrado:");
-                printPath(currentNode);
+                double tiempo = (System.nanoTime() - inicio) / 1000000000.0;
 
+                System.out.println("Estado objetivo: Encontrado");
                 System.out.println("Profundidad: " + currentNode.getDepth());
                 System.out.println("Iteraciones: " + time);
                 System.out.println("Estados visitados: " + visited.size());
+                System.out.println("Tiempo de busqueda: " + tiempo + " segundos");
+                System.out.println();
 
                 return;
             }
@@ -75,6 +81,8 @@ public class SearchTree {
 
     // BUSQUEDA EN PROFUNDIDAD
     public void busquedaProfundidad() {
+
+        long inicio = System.nanoTime();
 
         int time = 0;
 
@@ -101,12 +109,14 @@ public class SearchTree {
 
             if (currentNode.getState().equals(goalState)) {
 
-                System.out.println("Estado objetivo encontrado:");
-                printPath(currentNode);
+                double tiempo = (System.nanoTime() - inicio) / 1000000000.0;
 
+                System.out.println("Estado objetivo: Encontrado");
                 System.out.println("Profundidad: " + currentNode.getDepth());
                 System.out.println("Iteraciones: " + time);
                 System.out.println("Estados visitados: " + visited.size());
+                System.out.println("Tiempo de busqueda: " + tiempo + " segundos");
+                System.out.println();
 
                 return;
             }
@@ -127,6 +137,8 @@ public class SearchTree {
 
     // BUSQUEDA DE COSTO UNIFORME
     public void busquedaCostoUniforme() {
+
+        long inicio = System.nanoTime();
 
         int time = 0;
 
@@ -155,13 +167,15 @@ public class SearchTree {
 
             if (currentNode.getState().equals(goalState)) {
 
-                System.out.println("Estado objetivo encontrado:");
-                printPath(currentNode);
+                double tiempo = (System.nanoTime() - inicio) / 1000000000.0;
 
+                System.out.println("Estado objetivo: Encontrado");
                 System.out.println("Costo: " + currentNode.getCost());
                 System.out.println("Profundidad: " + currentNode.getDepth());
                 System.out.println("Iteraciones: " + time);
                 System.out.println("Estados visitados: " + visited.size());
+                System.out.println("Tiempo de busqueda: " + tiempo + " segundos");
+                System.out.println();
 
                 return;
             }
@@ -198,17 +212,16 @@ public class SearchTree {
         while (!stack.isEmpty()) {
 
             time++;
+            iteracionesTotales++;
 
             Node currentNode = stack.pop();
 
             if (currentNode.getState().equals(goalState)) {
 
-                System.out.println("Estado objetivo encontrado:");
-                printPath(currentNode);
-
+                System.out.println("Estado objetivo: Encontrado");
                 System.out.println("Limite: " + limite);
                 System.out.println("Profundidad: " + currentNode.getDepth());
-                System.out.println("Iteraciones: " + time);
+                System.out.println("Iteraciones del limite: " + time);
 
                 return true;
             }
@@ -236,10 +249,12 @@ public class SearchTree {
     // BUSQUEDA EN PROFUNDIDAD ITERATIVA
     public void busquedaProfundidadIterativa() {
 
+        long inicio = System.nanoTime();
+
+        iteracionesTotales = 0;
+
         // Probamos diferentes limites
         for (int limite = 0; limite <= 50; limite++) {
-
-            System.out.println("Buscando con limite: " + limite);
 
             // Creamos nuevamente la raiz
             root = new Node(initialState, null);
@@ -247,6 +262,13 @@ public class SearchTree {
             boolean encontrado = busquedaProfundidadLimitada(limite);
 
             if (encontrado) {
+
+                double tiempo = (System.nanoTime() - inicio) / 1000000000.0;
+
+                System.out.println("Iteraciones totales: " + iteracionesTotales);
+                System.out.println("Tiempo de busqueda: " + tiempo + " segundos");
+                System.out.println();
+
                 return;
             }
         }
@@ -257,6 +279,8 @@ public class SearchTree {
 
     // BUSQUEDA BIDIRECCIONAL
     public void busquedaBidireccional() {
+
+        long tiempoInicio = System.nanoTime();
 
         // Una cola empieza desde el inicio
         Queue<Node> queueInicio = new LinkedList<Node>();
@@ -288,12 +312,18 @@ public class SearchTree {
             // Revisamos si las dos busquedas se encontraron
             if (visitadosMeta.contains(actualInicio.getState())) {
 
+                double tiempo = (System.nanoTime() - tiempoInicio) / 1000000000.0;
+
+                System.out.println("Estado objetivo: Encontrado");
                 System.out.println("Las busquedas se encontraron en:");
+
                 System.out.println(
                     NodeUtils.formatState(actualInicio.getState())
                 );
 
                 System.out.println("Iteraciones: " + time);
+                System.out.println("Tiempo de busqueda: " + tiempo + " segundos");
+                System.out.println();
 
                 return;
             }
@@ -318,12 +348,18 @@ public class SearchTree {
             // Revisamos si las dos busquedas se encontraron
             if (visitadosInicio.contains(actualMeta.getState())) {
 
+                double tiempo = (System.nanoTime() - tiempoInicio) / 1000000000.0;
+
+                System.out.println("Estado objetivo: Encontrado");
                 System.out.println("Las busquedas se encontraron en:");
+
                 System.out.println(
                     NodeUtils.formatState(actualMeta.getState())
                 );
 
                 System.out.println("Iteraciones: " + time);
+                System.out.println("Tiempo de busqueda: " + tiempo + " segundos");
+                System.out.println();
 
                 return;
             }
