@@ -6,3 +6,5 @@ Unidad-2/RostrosEquipoCNN/dataset/
 __pycache__/ 
 *.pyc
 modelo.yml
+Unidad-2/data/
+Unidad-2/data/flowers-102/
